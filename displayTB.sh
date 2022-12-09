@@ -1,7 +1,7 @@
 # choose table
 clear
 echo "------------------------------------------"
-echo Databases:
+echo Tables:
 ls
 echo "------------------------------------------"
 	echo enter name of the table
