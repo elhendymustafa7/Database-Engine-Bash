@@ -1,23 +1,19 @@
 function check_dataType {
-	datatype=$(head -1 $2 | cut -d ':' -f$3 | awk -F "-" 'BEGIN { RS = ":" } {print $2}')
+	datatype=$(head -1 $2 | cut -d ':' -f$3 | awk -F "-" 'BEGIN { RS = ":" } {print $2}') #$2 TBName $3 ColNum $1 vaule we want to check
 	if [[ "$1" = '' ]]; then
-		echo 1
+		echo 0
 	elif [[ "$1" = -?(0) ]]; then
-		echo 0 # error!
+		echo 0 
 	elif [[ "$1" = ?(-)+([0-9])?(.)*([0-9]) ]]; then
 		if [[ $datatype == integer ]]; then
-			# datatype integer and the input is integer
 			echo 1
 		else
-			# datatype string and input is integer
 			echo 1
 		fi
 	else
 		if [[ $datatype == integer ]]; then
-			# datatype integer and input is string
-			echo 0 # error!
+			echo 0 
 		else
-			# datatype string and input is string
 			echo 1
 		fi
 	fi
@@ -30,14 +26,16 @@ ls
 echo "------------------------------------------"
 	echo enter name of the table
 	read dbtable
+	read
+	clear
 	if ! [[ -f "$dbtable" ]]; then
 		echo -e "\e[41mthis table doesn't exist\e[0m"
         read
 		clear
 	else
-		echo enter your primary key \"$(head -1 "$dbtable" | cut -d ':' -f1 |\
-		awk -F "-" 'BEGIN { RS = ":" } {print $1}')\" that you want to update type of $(head -1 "$dbtable"\
-		| cut -d ':' -f1 | awk -F "-" 'BEGIN { RS = ":" } {print $2}') 
+		echo enter your primary key $(head -1 "$dbtable" | cut -d ':' -f1 |\
+		awk -F "-" 'BEGIN { RS = ":" } {print $1}')  type of $(head -1 "$dbtable"\
+		| cut -d ':' -f1 | awk -F "-" 'BEGIN { RS = ":" } {print $2}') that you want to update
 		read
 		
 		recordNum=$(cut -d ':' -f1 "$dbtable" | sed '1d'\
@@ -58,11 +56,13 @@ echo "------------------------------------------"
 			echo "$option"
 			getFieldName=true
 			while $getFieldName; do
-				echo enter field name to update
+				echo enter column name that you want to update
 				read
+				clear
 				if [[ "$REPLY" = '' ]]; then
 					echo -e "\e[41minvalid entry\e[0m"
                     read
+					clear
 				elif [[ $(echo "$option" | grep -x "$REPLY") = "" ]]; then
 					echo -e "\e[41mno such field with the entered name, please enter a valid field name\e[0m"
                     read
@@ -72,7 +72,7 @@ echo "------------------------------------------"
 					| grep -x -n "$REPLY" | cut -d: -f1)
 					updatingField=true
 					while $updatingField; do
-						if [[ "$fieldnum" = 1 ]]; then
+						if [[ "$fieldnum" = 1 ]]; then #PK
 							echo enter new value 
 							read
 							check_type=$(check_dataType "$REPLY" "$dbtable" 1)
@@ -97,13 +97,12 @@ echo "------------------------------------------"
 								updatingField=false
 								getFieldName=false
 							fi
-						else
+						else #otherCol
 							updatingField=true
 							while $updatingField ; do
-								echo enter \"$(head -1 $dbtable | cut -d ':' -f$fieldnum |\
+								echo enter new value of column \"$(head -1 $dbtable | cut -d ':' -f$fieldnum |\
 								awk -F "-" 'BEGIN { RS = ":" } {print $1}')\" of type $(head -1 "$dbtable" | cut -d ':' -f$fieldnum |\
-								awk -F "-" 'BEGIN { RS = ":" } {print $2}') and size $(head -1 "$dbtable" | cut -d ':' -f$fieldnum |\
-								awk -F "-" 'BEGIN { RS = ":" } {print $3}')
+								awk -F "-" 'BEGIN { RS = ":" } {print $2}') 
 								read
 								check_type=$(check_dataType "$REPLY" "$dbtable" "$fieldnum")
 								if [[ "$check_type" == 0 ]]; then

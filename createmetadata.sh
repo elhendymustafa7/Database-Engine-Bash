@@ -28,6 +28,7 @@ while $validMetaData; do
             echo -n "$pk_name" >> "$dbtable"
             echo -n "-" >> "$dbtable"
             validMetaData=false
+            clear
         else
             echo -e "\e[41m Primary key can't start with numbers or special characters\e[0m"
             read
@@ -43,13 +44,11 @@ while $validMetaData; do
                 echo -n "$choice" >> "$dbtable"
                 if [[ $num_col -eq 1 ]]; then
 							echo $'\n' >> "$dbtable"
-							# echo -e "\n\e[42mtable created successfully\e[0m"
-						##########
-						# next column
 						else
 							echo -n ":" >> "$dbtable"
 						fi
                 validMetaData=false
+                clear
             else
                 echo -e "\e[41minvalid chioce\e[0m"
                 read
@@ -65,7 +64,7 @@ done
 for (( i = 1; i < num_col; i++ )); do
         validMetaData=true
         while $validMetaData; do
-            echo -e "enter field $[i+1] name"
+            echo -e "enter name of column $[i+1]"
             read field_name
             if [[ $field_name = "" ]]; then
                 echo -e "\e[41minvalid entry, please enter a correct name\e[0m"
@@ -80,6 +79,7 @@ for (( i = 1; i < num_col; i++ )); do
                 read
                 clear
             fi
+            clear
     done
     validMetaData=true
     while $validMetaData; do

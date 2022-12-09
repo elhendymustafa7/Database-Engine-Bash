@@ -3,7 +3,7 @@ function check_dataType {
 	if [[ "$1" = '' ]]; then
 		echo 1
 	elif [[ "$1" = -?(0) ]]; then
-		echo 0 # error!
+		echo 0 
 	elif [[ "$1" = ?(-)+([0-9])?(.)*([0-9]) ]]; then
 		if [[ $datatype == integer ]]; then
 			# datatype integer and the input is integer
@@ -36,6 +36,7 @@ else
 	echo "------------------------------------------"
 	echo enter the name of the table
 	read dbtable
+	clear
 	if ! [[ -f "$dbtable" ]]; then
 		echo -e "\e[41mthis table doesn't exist\e[0m"
 		read
@@ -43,7 +44,7 @@ else
 	else
 		insertingData=true
 		while $insertingData ; do
-			echo -e "enter primary key $(head -1 "$dbtable" | cut -d ':' -f1 | awk -F "-" '{print $1}')" 
+			echo -e "enter value of primary key $(head -1 "$dbtable" | cut -d ':' -f1 | cut -d '-' -f1) of type $(head -1 "$dbtable" | cut -d ':' -f1 | cut -d '-' -f2)" 
 			read
 			check_type=$(check_dataType "$REPLY" "$dbtable" 1)
 			pk_used=$(cut -d ':' -f1 "$dbtable" | awk '{if(NR != 1) print $0}' | grep -x -e "$REPLY")  # => grep PK
@@ -78,7 +79,7 @@ else
 				for (( i = 2; i <= num_col; i++ )); do
 					inserting_other_data=true
 					while $inserting_other_data ; do
-						echo -e "enter $(head -1 "$dbtable" | cut -d ':' -f$i | awk -F "-" 'BEGIN { RS = ":" } {print $1}') of type $(head -1 "$dbtable" | cut -d ':' -f$i | awk -F "-" 'BEGIN { RS = ":" } {print $2}')"
+						echo -e "enter value of column $(head -1 "$dbtable" | cut -d ':' -f$i | cut -d '-' -f1) of type $(head -1 "$dbtable" | cut -d ':' -f$i | cut -d '-' -f2)"
 						read
 						check_type=$(check_dataType "$REPLY" "$dbtable" "$i")
 						if [[ "$check_type" == 0 ]]; then
