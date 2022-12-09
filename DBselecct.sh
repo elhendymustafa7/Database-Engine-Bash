@@ -1,40 +1,41 @@
-PS3="Choose from table screen : "
-select choice in "Create table" "Drop table" "Insert into table" "Delete row" "Update table" "Display row" "Display table" "Display all table "  "Back"
+PS3=$'\e[1;35mChoose from table screen : \e[1m'
+select choice in $'\e[1;36mCreate table' $'Drop table' $'Insert into table' $'Delete row' $'Update table' $'Display row' $'Display table' $'Display all table'  $'Back'
 do
 
     case $choice in
-        "Create table" )
+        $'\e[1;36mCreate table' )
             . $maindir/createTB.sh
             ;;
-        "Drop table" )
+        $'Drop table' )
             . $maindir/dropTB.sh
             ;;
-        "Insert into table" )
+        $'insert into table' )
             . $maindir/insertintotable.sh
             ;;
-        "Delete row" )
+        $'Delete row' )
             . $maindir/deleterow.sh
             ;;
-        "Update table" )
+        $'Update table' )
             . $maindir/updatetable.sh
             ;;
-        "Display row" )
+        $'Display row' )
             . $maindir/displayrow.sh    
             ;;
-        "Display table" )
+        $'Display table' )
             . $maindir/displayTB.sh
             ;;
-        "Display all table " )
+        $'Display all table' )
             . $maindir/displayallTB.sh
             ;;
-        "Back" )
-            PS3="Choose from Home Screen : "
+        $'Back' )
+            PS3=$'\e[35mChoose from Home Screen : \e[1m'
             cd ..
-            read
             break
             ;;
          * )
             echo -e "\e[41minvalid entry\e[0m"
+            echo -e "\e[1;36mpress Enter to continue\e[0m"
+            read
             ;;
     esac
 done

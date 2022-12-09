@@ -39,6 +39,7 @@ else
 	clear
 	if ! [[ -f "$dbtable" ]]; then
 		echo -e "\e[41mthis table doesn't exist\e[0m"
+		echo -e "\e[1;36mpress Enter to continue\e[0m"
 		read
 		clear
 	else
@@ -50,15 +51,19 @@ else
 			pk_used=$(cut -d ':' -f1 "$dbtable" | awk '{if(NR != 1) print $0}' | grep -x -e "$REPLY")  # => grep PK
 			if [[ "$REPLY" == '' ]]; then
 				echo -e "\e[41mno entry\e[0m"
+				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
 			elif ! [[ $REPLY =~ [A-Za-z0-9\_] ]]; then
 				echo -e "\e[41mYou can't enter these characters => . / : - | \e[0m"
+				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
 			elif [[ "$check_type" == 0 ]]; then 
 				echo -e "\e[41mentry invalid\e[0m"
+				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
 			elif ! [[ "$pk_used" == '' ]]; then
 				echo -e "\e[41mthis primary key is already used\e[0m"
+				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
 			else 
 				if [[ $num_col == 1 ]]; then
@@ -66,6 +71,7 @@ else
 					inserting_other_data=false
 					insertingData=false
 					echo -e "\e[42mentry inserted successfully\e[0m"
+					echo -e "\e[1;36mpress Enter to continue\e[0m"
 					read
 					clear
 				else
@@ -84,9 +90,11 @@ else
 						check_type=$(check_dataType "$REPLY" "$dbtable" "$i")
 						if [[ "$check_type" == 0 ]]; then
 							echo -e "\e[41mentry invalid\e[0m"
+							echo -e "\e[1;36mpress Enter to continue\e[0m"
 							read
 						elif ! [[ $REPLY =~ [A-Za-z0-9\_] ]]; then
 							echo -e "\e[41mYou can't enter these characters => . / : - | \e[0m"
+							echo -e "\e[1;36mpress Enter to continue\e[0m"
 							read
 						else
 							if [[ i -eq $num_col ]]; then
@@ -94,6 +102,7 @@ else
 								inserting_other_data=false
 								insertingData=false
 								echo -e "\e[42mentry inserted successfully\e[0m"
+								echo -e "\e[1;36mpress Enter to continue\e[0m"
 								read
 								clear
 							else

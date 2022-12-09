@@ -5,7 +5,7 @@ then
     read
 else
     clear
-    echo "------------------------------------------"
+    echo -e "\e[1;36m------------------------------------------"
     echo Databases:
     ls
     echo "------------------------------------------"
@@ -14,13 +14,16 @@ else
     # db="$db"
     if [[ "$db" = '' ]]; then #null
         echo -e "\e[41minvalid entry, please enter a correct name\e[0m"
+        echo -e "\e[1;36mpress Enter to continue\e[0m"
         read
     elif ! [[ -d "$db" ]]; then 
         echo -e "\e[41mthis database doesn't exist\e[0m"
+        echo -e "\e[1;36mpress Enter to continue\e[0m"
         read	
     else
         rm -rf "$db"
         echo -e "\e[42m$db removed from your databases\e[0m"
+        echo -e "\e[1;36mpress Enter to continue\e[0m"
         read
     fi
 fi

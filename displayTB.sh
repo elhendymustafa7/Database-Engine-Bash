@@ -9,6 +9,7 @@ echo "------------------------------------------"
 	clear
 	if ! [[ -f "$dbtable" ]]; then
 		echo -e "\e[41mthis table doesn't exist\e[0m"
+		echo -e "\e[1;36mpress Enter to continue\e[0m"
 		read
 	else
 		echo "------------------------------------------------------------"
@@ -16,5 +17,6 @@ echo "------------------------------------------"
 		echo -e "\n------------------------------------------------------------"
 		sed '1d' "$dbtable" | awk -F: 'BEGIN{OFS="\t"} {for(n = 1; n <= NF; n++) $n=$n}  1'
 		read
+		echo -e "\e[1;36mpress Enter to continue\e[0m"
 		clear
 	fi

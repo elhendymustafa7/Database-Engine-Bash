@@ -8,6 +8,7 @@ echo "------------------------------------------"
 	if ! [[ -f "$dbtable" ]]; then
 		echo -e "\e[41mthis table doesn't exist\e[0m"
 		read
+		echo -e "\e[1;36mpress Enter to continue\e[0m"
 		clear
 	else
 		clear
@@ -20,10 +21,12 @@ echo "------------------------------------------"
 		if [[ "$REPLY" == '' ]]; then
 			echo -e "\e[41mno entry\e[0m"
 			read
+			echo -e "\e[1;36mpress Enter to continue\e[0m"
 			clear
 		elif [[ "$recordNum" = '' ]]; then
 			echo -e "\e[41mthis primary key doesn't exist\e[0m"
 			read
+			echo -e "\e[1;36mpress Enter to continue\e[0m"
 			clear
 		else
 			clear
@@ -34,6 +37,7 @@ echo "------------------------------------------"
 					echo \"$(head -1 $dbtable | cut -d ':' -f$i | cut -d '-' -f1)\" : $(sed -n "${recordNum}p" "$dbtable" | cut -d: -f$i)
 			done
 			read
+			echo -e "\e[1;36mpress Enter to continue\e[0m"
 			clear
 		fi
 	fi

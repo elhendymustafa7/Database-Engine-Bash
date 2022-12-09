@@ -8,6 +8,7 @@ read dbtable
 if ! [[ -f "$dbtable" ]]; then
     echo -e "\e[41mthis table doesn't exist\e[0m"
     read
+    echo -e "\e[1;36mpress Enter to continue\e[0m"
     clear
 else
     echo -e "enter primary key $(head -1 "$dbtable" | cut -d ':' -f1 | awk -F "-" 'BEGIN { RS = ":" } {print $1}')"
@@ -16,16 +17,19 @@ else
     if [[ "$REPLY" == '' ]]; then
         echo -e "\e[41mno entry\e[0m"
         read
+        echo -e "\e[1;36mpress Enter to continue\e[0m"
         clear
     elif [[ "$recordNum" = '' ]]; then
         echo -e "\e[41mthis primary key doesn't exist\e[0m"
         read
+        echo -e "\e[1;36mpress Enter to continue\e[0m"
         clear
     else
         let recordNum=$recordNum+1 
         sed -i "${recordNum}d" "$dbtable"
         echo -e "\e[42mrecord deleted successfully\e[0m"
         read
+        echo -e "\e[1;36mpress Enter to continue\e[0m"
         clear
     fi
 fi
