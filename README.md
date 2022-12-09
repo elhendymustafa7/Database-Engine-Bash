@@ -4,8 +4,8 @@ This is Project for Datebase Engine Using Bash script.
 run start.sh file first.
 
 ### Features
-1-  Display all Databases you have.
-2-  Create new Database.
+*  Display all Databases you have.
+*  Create new Database.
 3-  Connect to Database.
 4-  Drop Database.
 5-  Create Table.
