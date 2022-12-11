@@ -7,7 +7,7 @@ export maindir=$PWD
 cd ./DB/
 
 clear
-echo -e "\e[1;34m*************************************************************"
+echo -e "\e[96m*************************************************************"
 echo "*                                                           *"
 echo "*                                                           *"
 echo "*          Wellcome In Database Engine                      *"
