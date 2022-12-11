@@ -15,4 +15,4 @@ run start.sh file first.
 *  Display table.
 *  Display row from table. 
 *  Delete row 
-*  Display all table .## How to use
+*  Display all table .
