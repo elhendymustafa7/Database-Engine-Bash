@@ -10,7 +10,7 @@ clear
 echo -e "\e[96m*************************************************************"
 echo "*                                                           *"
 echo "*                                                           *"
-echo "*          Wellcome In Database Engine                      *"
+echo "*          Welcome In Database Engine                       *"
 echo "*                                                           *"
 echo "*      AbdelRahman_Anany         Mustafa Elhendy            *"
 echo "*                                                           *"
