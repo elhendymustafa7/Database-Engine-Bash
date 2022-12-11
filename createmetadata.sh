@@ -3,9 +3,10 @@ PS1=""
 validMetaData=true
 #############################  Primary Key    ##############################
 while $validMetaData; do
-        echo -e "\e[1;36mhow many columns you want?"
+        echo -e "\e[1;36mHow many columns you want?\e[0m"
         read num_col
-        
+        echo -e "\e[1;36mpress Enter to continue\e[0m"
+        read
         if [[ "$num_col" =~ ^([1-9])+([0-9])*$ ]]; then # => one or more number
             validMetaData=false
             clear
@@ -19,7 +20,7 @@ done
 
 validMetaData=true
 while $validMetaData; do
-        echo -e "enter primary key name"
+        echo -e "\e[1;36mEnter primary key column name\e[0m"
         read pk_name
         if [[ $pk_name = "" ]]; then
             echo -e "\e[41minvalid entry, please enter a correct name\e[0m"
@@ -41,7 +42,7 @@ done
 
 validMetaData=true
 while $validMetaData; do
-        echo -e "enter primary key datatype"
+        echo -e "\e[1;36mEnter primary key datatype\e[0m"
         select choice in "integer" "string"; do
             if [[ "$REPLY" = "1" || "$REPLY" = "2" ]]; then
                 echo -n "$choice" >> "$dbtable"
@@ -68,7 +69,7 @@ done
 for (( i = 1; i < num_col; i++ )); do
         validMetaData=true
         while $validMetaData; do
-            echo -e "enter name of column $[i+1]"
+            echo -e "\e[1;36mEnter name of column $[i+1]\e[0m"
             read field_name
             if [[ $field_name = "" ]]; then
                 echo -e "\e[41minvalid entry, please enter a correct name\e[0m"
@@ -89,7 +90,7 @@ for (( i = 1; i < num_col; i++ )); do
     done
     validMetaData=true
     while $validMetaData; do
-            echo -e "enter field $[i+1] datatype"
+            echo -e "\e[1;36mEnter column $[i+1] datatype\e[0m"
             select choice in "integer" "string"; do
                 if [[ "$REPLY" = "1" || "$REPLY" = "2" ]]; then
                     echo -n "$choice" >> "$dbtable"

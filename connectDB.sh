@@ -7,8 +7,8 @@ else
         echo -e "\e[1;36m------------------------------------------"
         echo Databases:
         ls
-        echo "------------------------------------------"
-        echo enter the name of the database
+        echo -e "------------------------------------------\e[0m"
+        echo -e "\e[1;36mEnter the name of the database\e[0m"
         read db
         db="$db"
         if [[ "$db" = '' ]]; then

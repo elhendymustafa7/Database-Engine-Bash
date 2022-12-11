@@ -8,10 +8,9 @@ else
     echo -e "\e[1;36m------------------------------------------"
     echo Databases:
     ls
-    echo "------------------------------------------"
-    echo enter the name of the database
+    echo -e "\e[1;36m------------------------------------------\e[0m"
+    echo -e "\e[1;36menter the name of the database\e[1m"
     read db
-    # db="$db"
     if [[ "$db" = '' ]]; then #null
         echo -e "\e[41minvalid entry, please enter a correct name\e[0m"
         echo -e "\e[1;36mpress Enter to continue\e[0m"

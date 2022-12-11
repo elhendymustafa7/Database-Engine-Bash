@@ -2,7 +2,7 @@ check=true
 while $check 
 do
 clear
-echo -e "\e[1;36menter the name of the database please"
+echo -e "\e[1;36menter the name of the database please\e[0m"
 read dbname
 if [[ -e "$dbname" ]]; then
     echo -e "\e[41mDatebase was exist\e[0m"

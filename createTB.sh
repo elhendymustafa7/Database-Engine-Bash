@@ -1,5 +1,5 @@
 clear
-echo -e "\e[1;36menter the name of the table please"
+echo -e "\e[1;36mEnter name of table to create please\e[0m"
 read dbtable
 if [[ "$dbtable" = "" ]]; then
 	echo -e "\e[41minvalid entry, please enter a correct name\e[0m"

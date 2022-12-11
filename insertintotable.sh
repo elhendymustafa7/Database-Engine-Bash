@@ -1,7 +1,7 @@
 function check_dataType {
 	datatype=$(head -1 $2 | cut -d ':' -f$3 | awk -F "-" 'BEGIN { RS = ":" } {print $2}')
 	if [[ "$1" = '' ]]; then
-		echo 1
+		echo 0
 	elif [[ "$1" = -?(0) ]]; then
 		echo 0 
 	elif [[ "$1" = ?(-)+([0-9])?(.)*([0-9]) ]]; then
@@ -30,11 +30,11 @@ then
     clear
 else
 	clear
-	echo "------------------------------------------"
+	echo -e "\e[1;36m------------------------------------------\e[1m"
 	echo Tables :
 	ls
-	echo "------------------------------------------"
-	echo enter the name of the table
+	echo -e "\e[1;36m------------------------------------------\e[0m"
+	echo -e "\e[1;36mEnter table name \e[0m"
 	read dbtable
 	clear
 	if ! [[ -f "$dbtable" ]]; then
@@ -45,7 +45,7 @@ else
 	else
 		insertingData=true
 		while $insertingData ; do
-			echo -e "enter value of primary key $(head -1 "$dbtable" | cut -d ':' -f1 | cut -d '-' -f1) of type $(head -1 "$dbtable" | cut -d ':' -f1 | cut -d '-' -f2)" 
+			echo -e "\e[1;36mEnter value of column $(head -1 "$dbtable" | cut -d ':' -f1 | cut -d '-' -f1) of type $(head -1 "$dbtable" | cut -d ':' -f1 | cut -d '-' -f2) ( primary key )\e[0m" 
 			read
 			check_type=$(check_dataType "$REPLY" "$dbtable" 1)
 			pk_used=$(cut -d ':' -f1 "$dbtable" | awk '{if(NR != 1) print $0}' | grep -x -e "$REPLY")  # => grep PK
@@ -53,18 +53,22 @@ else
 				echo -e "\e[41mno entry\e[0m"
 				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
+				clear
 			elif ! [[ $REPLY =~ [A-Za-z0-9\_] ]]; then
 				echo -e "\e[41mYou can't enter these characters => . / : - | \e[0m"
 				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
+				clear
 			elif [[ "$check_type" == 0 ]]; then 
 				echo -e "\e[41mentry invalid\e[0m"
 				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
+				clear
 			elif ! [[ "$pk_used" == '' ]]; then
 				echo -e "\e[41mthis primary key is already used\e[0m"
 				echo -e "\e[1;36mpress Enter to continue\e[0m"
 				read
+				clear
 			else 
 				if [[ $num_col == 1 ]]; then
 					echo "$REPLY" >> "$dbtable"
@@ -85,7 +89,7 @@ else
 				for (( i = 2; i <= num_col; i++ )); do
 					inserting_other_data=true
 					while $inserting_other_data ; do
-						echo -e "enter value of column $(head -1 "$dbtable" | cut -d ':' -f$i | cut -d '-' -f1) of type $(head -1 "$dbtable" | cut -d ':' -f$i | cut -d '-' -f2)"
+						echo -e "\e[1;36mEnter value of column $(head -1 "$dbtable" | cut -d ':' -f$i | cut -d '-' -f1) of type $(head -1 "$dbtable" | cut -d ':' -f$i | cut -d '-' -f2)\e[0m"
 						read
 						check_type=$(check_dataType "$REPLY" "$dbtable" "$i")
 						if [[ "$check_type" == 0 ]]; then

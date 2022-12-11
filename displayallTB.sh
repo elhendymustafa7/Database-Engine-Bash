@@ -5,11 +5,11 @@ if [[ ! "$(ls -A $PWD)"  ]]; then
     clear
 else
     clear
-    echo "------------------------------------------"
+    echo -e "\e[1:36m------------------------------------------\e[1m"
     echo All Tables :
     ls
-    echo "------------------------------------------"
-    read
+    echo -e "\e[1:36m------------------------------------------\e[0m"
     echo -e "\e[1;36mpress Enter to continue\e[0m"
+    read
     clear
 fi

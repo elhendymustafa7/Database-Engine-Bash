@@ -1,35 +1,38 @@
 PS3=$'\e[1;35mChoose from table screen : \e[1m'
-select choice in $'\e[1;36mCreate table' $'Drop table' $'Insert into table' $'Delete row' $'Update table' $'Display row' $'Display table' $'Display all table'  $'Back'
+select choice in $'\e[1;36mCreate table             \e[0m' $'\e[1;36mDrop table             \e[0m' $'\e[1;36mInsert into table\e[0m' $'\e[1;36mDelete row           \e[0m' $'\e[1;36mUpdate table\e[0m' $'\e[1;36mDisplay row           \e[0m' $'\e[1;36mDisplay table\e[0m' $'\e[1;36mDisplay all table\e[0m'  $'\e[1;36mBack\e[0m'
 do
 
     case $choice in
-        $'\e[1;36mCreate table' )
+        $'\e[1;36mCreate table             \e[0m' )
             . $maindir/createTB.sh
             ;;
-        $'Drop table' )
+        $'\e[1;36mDrop table             \e[0m' )
             . $maindir/dropTB.sh
             ;;
-        $'insert into table' )
+        $'\e[1;36mInsert into table\e[0m' )
             . $maindir/insertintotable.sh
             ;;
-        $'Delete row' )
+        $'\e[1;36mDelete row           \e[0m' )
             . $maindir/deleterow.sh
             ;;
-        $'Update table' )
+        $'\e[1;36mUpdate table\e[0m' )   
             . $maindir/updatetable.sh
             ;;
-        $'Display row' )
+        $'\e[1;36mDisplay row           \e[0m' )
             . $maindir/displayrow.sh    
             ;;
-        $'Display table' )
+        $'\e[1;36mDisplay table\e[0m' )
             . $maindir/displayTB.sh
             ;;
-        $'Display all table' )
+        $'\e[1;36mDisplay all table\e[0m' )
             . $maindir/displayallTB.sh
             ;;
-        $'Back' )
+        $'\e[1;36mBack\e[0m' )
             PS3=$'\e[35mChoose from Home Screen : \e[1m'
             cd ..
+            echo -e "\e[1;36mpress Enter to continue\e[0m"
+            read
+            clear
             break
             ;;
          * )
