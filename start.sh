@@ -6,5 +6,21 @@ fi
 export maindir=$PWD
 cd ./DB/
 
+clear
+echo -e "\e[1;34m*************************************************************"
+echo "*                                                           *"
+echo "*                                                           *"
+echo "*          Wellcome In Database Engine                      *"
+echo "*                                                           *"
+echo "*      AbdelRahman_Anany         Mustafa Elhendy            *"
+echo "*                                                           *"
+echo "*                                                           *"
+echo "*                                                           *"
+echo "*************************************************************"
+
+echo -e "press Enter to continue\e[0m"
+read 
+
+
 . $maindir/homeselect.sh
 

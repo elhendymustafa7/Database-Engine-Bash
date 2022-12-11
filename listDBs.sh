@@ -5,10 +5,13 @@ if [[ -z "$(ls -A $PWD)" ]]; then
     clear
 else
     clear
-    echo "------------------------------------------"
+    echo -e "\e[1;36m------------------------------------------"
     echo Databases:
+    echo
     ls
+    echo
     echo "------------------------------------------"
+    echo -e "press Enter to continue\e[0m"
     read
 fi
 clear

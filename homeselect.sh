@@ -1,31 +1,33 @@
 clear
-PS3="Choose from Home Screen : "
-select choice in  "Display All Databases" "Create a new database" "Connect to Database" "Drop Database" "Exit"
+PS3=$'\e[35mChoose from Home Screen : \e[1m'
+select choice in $'\e[1;36mDisplay All Databases' $'Create a new database' $'Connect to Database' $'Drop Database' $'Exit'
 do 
     case $choice in
-        "Display All Databases" )
+        $'\e[1;36mDisplay All Databases' )
                 . $maindir/listDBs.sh
                 ;;
-        "Create a new database" )
+        $'Create a new database' )
                 . $maindir/createDB.sh
                 ;;
-        "Connect to Database" )
+        $'Connect to Database' )
                 . $maindir/connectDB.sh
                 clear
                 ;;
-        "Drop Database" )
+        $'Drop Database' )
                 . $maindir/dropDB.sh
                 ;;
-        "Exit" )
+        $'Exit' )
                 break
                 ;;
         * )
 		echo -e "\e[41minvalid entry\e[0m"
+                echo -e "\e[1;36mpress Enter to continue\e[0m"
                 read
                 clear
                 ;;
         ^$ )
                 echo -e "\e[41minvalid entry\e[0m"
+                echo -e "\e[1;36mpress Enter to continue\e[0m"
                 read
                 clear
                 ;;
